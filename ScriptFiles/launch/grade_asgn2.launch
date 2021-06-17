@@ -1,0 +1,13 @@
+<launch>
+
+  <arg name="robot_urdf_location" default="$(find lwr_defs)/robots/kuka_lwr_arm.urdf.xml" />
+  <arg name="robot" default="kuka_lwr" />
+
+  <param name="robot_description" 
+	 command="$(find xacro)/xacro  '$(arg robot_urdf_location)'" />
+
+  <include file="$(find cartesian_control)/launch/$(arg robot).launch"/>
+
+  <node pkg="assignment2" type="ccik.py" name="solution" output="screen" />
+
+</launch>
